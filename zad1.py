@@ -13,7 +13,7 @@ def create_matrix() -> np.ndarray:
 
 def failed_students(matrix: np.ndarray, n: int) -> int:
     count = 0
-    fails = matrix == 2.0
+    fails = matrix < 3.0
     for rows in fails:
         if np.count_nonzero(rows) > n:
             count += 1
