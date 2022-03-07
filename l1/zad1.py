@@ -64,8 +64,8 @@ def students_with_averages_ht(matrix: np.ndarray, treshold: float = 4.5):
     return result
 
 
-edukacja_cl = create_matrix()
-failed_students(edukacja_cl, 2)
+# edukacja_cl = create_matrix()
+# failed_students(edukacja_cl, 2)
 # print(students_with_highest_averages(edukacja_cl))
 # print(create_histogram(edukacja_cl))
 # print(edukacja_cl)
