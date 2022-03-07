@@ -15,15 +15,17 @@ def failed_students(matrix: np.ndarray, n: int) -> int:
     count = 0
     fails = matrix < 3.0
     for rows in fails:
+        print(rows)
         if np.count_nonzero(rows) > n:
             count += 1
+            print("added fail to total")
+    print(count)
     return count
 
 
 def students_with_highest_averages(matrix: np.ndarray) -> np.ndarray:
     avgs = np.average(matrix, axis=1)
     max_index = np.argmax(avgs)
-    # print(max_index)
     return matrix[max_index]
 
 
@@ -45,13 +47,11 @@ def student_with_most_hi_grades(matrix: np.ndarray) -> int:
     return topi
 
 
-# do poprawienia
 def create_histogram(matrix: np.ndarray) -> list[np.ndarray]:
     result = []
     for row in matrix.T:
         hist, _ = np.histogram(row, bins=POSSIBLE_GRADES)
         result.append(hist)
-
     return result
 
 
@@ -65,9 +65,9 @@ def students_with_averages_ht(matrix: np.ndarray, treshold: float = 4.5):
 
 
 edukacja_cl = create_matrix()
-# failed_students(edukacja_cl, 2)
+failed_students(edukacja_cl, 2)
 # print(students_with_highest_averages(edukacja_cl))
-print(create_histogram(edukacja_cl))
-print(edukacja_cl)
+# print(create_histogram(edukacja_cl))
+# print(edukacja_cl)
 # print(students_with_averages_ht(edukacja_cl))
 # print(student_with_most_hi_grades(edukacja_cl))
