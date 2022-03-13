@@ -29,7 +29,7 @@ def valid_pcs_count(receipt, products):
     return False
 
 
-def calculate_price(client, receipts, products) -> int:
+def calculate_total(client, receipts, products) -> int:
     clients_receipts = [rec for rec in receipts if rec[0] == client]
     clients_total = 0
     for rec in clients_receipts:
@@ -39,8 +39,9 @@ def calculate_price(client, receipts, products) -> int:
 
 receipts = [[0, 0, 1], [0, 1, 8], [1, 0, 5], [2, 1, 8], [2, 2, 4]]
 # I'd use an enum for "kg" and "szt" but I'm not familliar
-# with them yet.
+# with them yet. Also, the product ID is determined by the
+# position within the list
 products = [[12.99, "kg"], [10.50, "szt"]]
 
 valid_receipts = validate_all_receipts(receipts, products)
-print(calculate_price(1, valid_receipts, products))
+print(calculate_total(1, valid_receipts, products))
