@@ -1,14 +1,15 @@
+import time
+
+import pandas as pd
+import plotly.express as px
+
+import testsuite
 from algorithms import bubblesort as bbl
 from algorithms import insertionsort as ins
 from algorithms import selectionsort as sel
-import testsuite
-import plotly.express as px
-import pandas as pd
-import time
-
 
 NS = [10, 20, 50, 100, 200, 500, 1000]
-# NS = [10, 20, 50, 100, 200, 500, 1000, 1500, 2000, 2500, 5000, 7500, 10000]
+# NS = [10, 20, 50, 100, 200, 500, 1000, 1500, 2000, 2500, 5000]
 
 tested_algs = (
     bbl.bubblesort,
@@ -27,8 +28,8 @@ for alg in tested_algs:
     maxima[alg.__name__] = []
     results = []
     for n in NS:
-        # change length to 10
-        results.append(testsuite.run_tests(n, 100, alg))
+        results.append(testsuite.run_tests(n, 10, alg))
+        print("finished", n)
     for avg, mx in results:
         averages[alg.__name__].append(avg)
         maxima[alg.__name__].append(mx)
@@ -42,14 +43,14 @@ maxdf = pd.DataFrame.from_dict(maxima).set_axis(NS, axis="index")
 avgfig = px.line(
     avgdf,
     markers=True,
-    labels={"index": "samples", "value": "timewi [s]", "variable": "algorithm"},
+    labels={"index": "length of list", "value": "time [s]", "variable": "algorithm"},
     title="Average runtimes",
     template="plotly_dark",
 )
 maxfig = px.line(
     maxdf,
     markers=True,
-    labels={"index": "samples", "value": "time [s]", "variable": "algorithm"},
+    labels={"index": "length of list", "value": "time [s]", "variable": "algorithm"},
     title="Maximum runtimes",
     template="plotly_dark",
 )

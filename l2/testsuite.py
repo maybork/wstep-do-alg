@@ -1,10 +1,9 @@
 import random
 import time
-from typing import Callable, Iterable
-from collections import namedtuple
+from typing import Callable
 
 
-def single_test(length, alg):
+def single_test(alg, length):
     target = [random.randint(0, 100000) for _ in range(length)]
     start = time.time()
     alg(target)
@@ -25,5 +24,5 @@ def run_tests(n: int, times: int, alg: Callable) -> tuple:
     Returns:
         tuple: the average and maximum runtime in seconds
     """
-    temp = [single_test(n, alg) for i in range(times)]
-    return (sum(temp) / len(temp), max(temp))
+    temp = [single_test(alg, n) for i in range(times)]
+    return sum(temp) / len(temp), max(temp)
