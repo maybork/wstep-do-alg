@@ -146,7 +146,7 @@ def symulacja_urzedu(
             ttype = taskqueue.head.data[0]
             avail = check_for_available_windows(windows, ttype)
             if avail:
-                windows[avail[0] - 1][2] = taskqueue.dequeue().data[1]
+                windows[random.choice(avail) - 1][2] = taskqueue.dequeue().data[1]
             else:
                 break
         # print(len(taskqueue), len(check_for_available_windows(windows)), n_wins)
